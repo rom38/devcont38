@@ -34,7 +34,7 @@ A devcontainer configuration only — no application code, no build system, no t
 - Python interpreter path for VS Code: `/usr/local/bin/python`
 - Default shell is fish (`$SHELL=/usr/local/bin/fish`, `chsh -s /usr/local/bin/fish vscode`)
 - `FNM_DIR=/usr/local/share/fnm` set via `containerEnv`
-- `devcon-doc.md` and `docker-file.md` are reference documentation — don't treat as project code or config
+- `devcon-doc.md`, `docker-file.md`, and `fnm-doc.md` are reference documentation — don't treat as project code or config
 - No lint, typecheck, or test commands exist
 
 ## Root-level setup-*.sh scripts
