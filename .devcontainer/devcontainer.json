@@ -1,0 +1,31 @@
+{
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainer-community/devcontainer-features/bun.sh:1": {},
+        "ghcr.io/devcontainers-extra/features/fd:1": {},
+        "ghcr.io/devcontainers-extra/features/gh-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python"
+            }
+        }
+    },
+    "containerEnv": {
+        "FNM_DIR": "/usr/local/share/fnm",
+        "SHELL": "/usr/local/bin/fish"
+    },
+    "postCreateCommand": "sudo chsh -s /usr/local/bin/fish vscode 2>/dev/null; npm config set prefix /home/vscode/.local && npm i -g @kilocode/cli",
+    "remoteUser": "vscode"
+}
