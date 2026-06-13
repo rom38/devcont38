@@ -29,15 +29,15 @@ RUN ARCH=$(dpkg --print-architecture) \
     && curl -fsSL "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-linux_${FZF_ARCH}.tar.gz" \
         | tar xzf - -C /usr/local/bin \
     && curl -fsSL "https://github.com/fish-shell/fish-shell/releases/download/4.7.1/fish-4.7.1-linux-${FISH_ARCH}.tar.xz" \
-        | tar xJf - -C /usr/local --strip-components=1 \
+        | tar xJf - -C /usr/local/bin \
     && echo /usr/local/bin/fish >> /etc/shells \
     && curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir /usr/local/share/fnm --skip-shell \
     && ln -s /usr/local/share/fnm/fnm /usr/local/bin/fnm \
-    && export PATH="/usr/local/share/fnm:$PATH" \
+    && export FNM_DIR=/usr/local/share/fnm PATH="/usr/local/share/fnm:$PATH" \
     && eval "$(fnm env --shell bash)" \
     && fnm install --lts \
     && fnm default lts-latest \
-    && NODE_BIN=$(dirname "$(find /usr/local/share/fnm -name node -type f -not -path '*/fnm' | head -1)") \
+    && NODE_BIN=$(dirname "$(fnm exec --using=default which node)") \
     && ln -sf "$NODE_BIN/node" /usr/local/bin/node \
     && ln -sf "$NODE_BIN/npm" /usr/local/bin/npm \
     && ln -sf "$NODE_BIN/npx" /usr/local/bin/npx \

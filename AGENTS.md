@@ -12,8 +12,9 @@ A devcontainer configuration only — no application code, no build system, no t
 
 ## Tools installed by feature (devcontainer.json)
 
-- `git` (latest), `gh` (latest), `fd`
 - `common-utils` (zsh, vscode user)
+- `bun` — latest (ghcr.io/devcontainer-community)
+- `gh` (latest), `fd`
 
 ## Tools installed by Dockerfile (prebuilt binaries)
 
@@ -29,11 +30,11 @@ A devcontainer configuration only — no application code, no build system, no t
 
 ## Key facts
 
-- `postCreateCommand` globally installs `@kilocode/cli` via npm
+- `postCreateCommand` globally installs `@kilocode/cli` via npm, creates fish conf.d for `~/.local/bin` PATH
 - Remote user is `vscode` (uid 1000, gid 1000)
 - Python interpreter path for VS Code: `/usr/local/bin/python`
 - Default shell is fish (`$SHELL=/usr/local/bin/fish`, `chsh -s /usr/local/bin/fish vscode`)
-- `FNM_DIR=/usr/local/share/fnm` set via `containerEnv`
+- `FNM_DIR=/usr/local/share/fnm` set via `containerEnv` (also exported during Dockerfile build)
 - `devcon-doc.md`, `docker-file.md`, and `fnm-doc.md` are reference documentation — don't treat as project code or config
 - No lint, typecheck, or test commands exist
 

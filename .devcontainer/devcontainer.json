@@ -26,6 +26,6 @@
         "FNM_DIR": "/usr/local/share/fnm",
         "SHELL": "/usr/local/bin/fish"
     },
-    // "postCreateCommand": "sudo chsh -s /usr/local/bin/fish vscode 2>/dev/null; npm config set prefix /home/vscode/.local && npm i -g @kilocode/cli",
+     "postCreateCommand": "sudo chsh -s /usr/local/bin/fish vscode 2>/dev/null; mkdir -p /home/vscode/.config/fish/conf.d && echo 'fish_add_path /home/vscode/.local/bin' > /home/vscode/.config/fish/conf.d/localbin.fish && npm config set prefix /home/vscode/.local && npm i -g @kilocode/cli",
     "remoteUser": "vscode"
 }
