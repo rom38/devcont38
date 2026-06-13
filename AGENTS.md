@@ -13,7 +13,6 @@ A devcontainer configuration only — no application code, no build system, no t
 ## Tools installed by feature (devcontainer.json)
 
 - `common-utils` (zsh, vscode user)
-- `bun` — latest (ghcr.io/devcontainer-community)
 - `gh` (latest), `fd`
 
 ## Tools installed by Dockerfile (prebuilt binaries)
@@ -22,11 +21,12 @@ A devcontainer configuration only — no application code, no build system, no t
 - **gitui** — latest release from GitHub (`/releases/latest/download/` redirect)
 - **fzf** — v0.73.1 from GitHub (version hardcoded in Dockerfile, update manually)
 - **fish** — 4.7.1 from GitHub (version hardcoded in Dockerfile, update manually)
+- **bun** — latest (installed via `bun.sh/install` with `BUN_INSTALL=/usr/local`)
 
 ## Dockerfile layers (2 total)
 
 1. `RUN apt` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, etc.) + subversion from apt + apt cleanup
-2. `RUN binaries` — neovim + gitui + fzf + fish (all arch-conditional) + fnm + Node.js LTS + uv + Python 3.14
+2. `RUN binaries` — neovim + gitui + fzf + fish (all arch-conditional) + fzf fish integration + fnm + Node.js LTS + uv + Python 3.14 + bun
 
 ## Key facts
 

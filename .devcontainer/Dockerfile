@@ -28,6 +28,8 @@ RUN ARCH=$(dpkg --print-architecture) \
         | tar xzf - -C /usr/local/bin \
     && curl -fsSL "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-linux_${FZF_ARCH}.tar.gz" \
         | tar xzf - -C /usr/local/bin \
+    && mkdir -p /usr/local/share/fish/vendor_conf.d \
+    && fzf --fish > /usr/local/share/fish/vendor_conf.d/fzf.fish \
     && curl -fsSL "https://github.com/fish-shell/fish-shell/releases/download/4.7.1/fish-4.7.1-linux-${FISH_ARCH}.tar.xz" \
         | tar xJf - -C /usr/local/bin \
     && echo /usr/local/bin/fish >> /etc/shells \
@@ -45,4 +47,5 @@ RUN ARCH=$(dpkg --print-architecture) \
     && curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh \
     && UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python install 3.14 \
     && ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python3 \
-    && ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python
+    && ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python \
+    && curl -fsSL https://bun.sh/install | env BUN_INSTALL=/usr/local bash

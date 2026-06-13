@@ -11,7 +11,6 @@
             "userGid": "1000",
             "upgradePackages": "true"
         },
-        "ghcr.io/devcontainer-community/devcontainer-features/bun.sh:1": {},
         "ghcr.io/devcontainers-extra/features/fd:1": {},
         "ghcr.io/devcontainers-extra/features/gh-cli:1": {}
     },
@@ -26,6 +25,6 @@
         "FNM_DIR": "/usr/local/share/fnm",
         "SHELL": "/usr/local/bin/fish"
     },
-     "postCreateCommand": "sudo chsh -s /usr/local/bin/fish vscode 2>/dev/null; mkdir -p /home/vscode/.config/fish/conf.d && echo 'fish_add_path /home/vscode/.local/bin' > /home/vscode/.config/fish/conf.d/localbin.fish && npm config set prefix /home/vscode/.local && npm i -g @kilocode/cli",
+     "postCreateCommand": "sudo chsh -s /usr/local/bin/fish vscode 2>/dev/null; mkdir -p /home/vscode/.config/fish/conf.d && printf 'fish_add_path %s\n' /home/vscode/.local/bin > /home/vscode/.config/fish/conf.d/localbin.fish && npm config set prefix /home/vscode/.local && npm i -g @kilocode/cli",
     "remoteUser": "vscode"
 }
