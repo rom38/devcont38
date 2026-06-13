@@ -30,7 +30,7 @@ A devcontainer configuration only — no application code, no build system, no t
 
 ## Dockerfile layers (2 total)
 
-1. `RUN apt` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, etc.) + subversion from apt + apt cleanup
+1. `RUN apt` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, etc.) + openssh-server + subversion from apt + apt cleanup
 2. `RUN binaries` — neovim + gitui + fzf + fish (all arch-conditional) + fzf fish integration + fnm + Node.js LTS + uv + Python 3.14 + bun + broot + eza + lf + restic + rclone
 
 ## Key facts
