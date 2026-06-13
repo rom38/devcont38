@@ -22,11 +22,16 @@ A devcontainer configuration only — no application code, no build system, no t
 - **fzf** — v0.73.1 from GitHub (version hardcoded in Dockerfile, update manually)
 - **fish** — 4.7.1 from GitHub (version hardcoded in Dockerfile, update manually)
 - **bun** — latest (installed via `bun.sh/install` with `BUN_INSTALL=/usr/local`)
+- **broot** — v1.57.0 from dystroy.org (version hardcoded, update manually)
+- **eza** — latest release from GitHub (`/releases/latest/download/` redirect)
+- **lf** — latest release from GitHub (`/releases/latest/download/` redirect)
+- **restic** — v0.19.0 from GitHub (version hardcoded in Dockerfile, update manually)
+- **rclone** — latest release from downloads.rclone.org (`rclone-current-linux-*.deb`)
 
 ## Dockerfile layers (2 total)
 
 1. `RUN apt` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, etc.) + subversion from apt + apt cleanup
-2. `RUN binaries` — neovim + gitui + fzf + fish (all arch-conditional) + fzf fish integration + fnm + Node.js LTS + uv + Python 3.14 + bun
+2. `RUN binaries` — neovim + gitui + fzf + fish (all arch-conditional) + fzf fish integration + fnm + Node.js LTS + uv + Python 3.14 + bun + broot + eza + lf + restic + rclone
 
 ## Key facts
 

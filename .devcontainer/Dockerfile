@@ -10,15 +10,15 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         libffi-dev liblzma-dev gnupg lzip tar unzip \
         gawk gettext gperf m4 ed fig2dev \
         lua5.3 libc-ares-dev libicu-dev openssl luajit bc rsync wget \
-        ncdu tree tmux bat mc htop ninja-build cmake lf jq \
-        ca-certificates sysbench sqlite3 git subversion \
+        ncdu tree tmux bat mc htop ninja-build cmake jq \
+        ca-certificates sysbench sqlite3 git subversion bzip2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 RUN ARCH=$(dpkg --print-architecture) \
     && case "$ARCH" in \
-        amd64) NVIM_ARCH="x86_64" ; GITUI_ARCH="x86_64" ; FZF_ARCH="amd64" ; FISH_ARCH="x86_64" ;; \
-        arm64) NVIM_ARCH="arm64"   ; GITUI_ARCH="aarch64" ; FZF_ARCH="arm64" ; FISH_ARCH="aarch64" ;; \
+        amd64) NVIM_ARCH="x86_64" ; GITUI_ARCH="x86_64" ; FZF_ARCH="amd64" ; FISH_ARCH="x86_64" ; EZA_ARCH="x86_64-unknown-linux-gnu" ; BROOT_ARCH="x86_64-linux" ;; \
+        arm64) NVIM_ARCH="arm64"   ; GITUI_ARCH="aarch64" ; FZF_ARCH="arm64" ; FISH_ARCH="aarch64" ; EZA_ARCH="aarch64-unknown-linux-gnu" ; BROOT_ARCH="aarch64-linux" ;; \
         *)     echo "Unsupported arch: $ARCH"; exit 1 ;; \
        esac \
     && echo "Architecture: $ARCH" \
@@ -48,4 +48,16 @@ RUN ARCH=$(dpkg --print-architecture) \
     && UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python install 3.14 \
     && ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python3 \
     && ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python \
+    && curl -fsSL "https://github.com/eza-community/eza/releases/latest/download/eza_${EZA_ARCH}.tar.gz" \
+        | tar xzf - -C /usr/local/bin \
+    && curl -fsSL "https://dystroy.org/broot/download/${BROOT_ARCH}/broot" -o /usr/local/bin/broot \
+    && chmod +x /usr/local/bin/broot \
+    && curl -fsSL "https://github.com/gokcehan/lf/releases/latest/download/lf-linux-${ARCH}.tar.gz" \
+        | tar xzf - -C /usr/local/bin \
+    && curl -fsSL "https://github.com/restic/restic/releases/download/v0.19.0/restic_0.19.0_linux_${ARCH}.bz2" \
+        | bzcat > /usr/local/bin/restic \
+    && chmod +x /usr/local/bin/restic \
+    && curl -fsSL "https://downloads.rclone.org/rclone-current-linux-${ARCH}.deb" -o /tmp/rclone.deb \
+    && dpkg -i /tmp/rclone.deb \
+    && rm /tmp/rclone.deb \
     && curl -fsSL https://bun.sh/install | env BUN_INSTALL=/usr/local bash
