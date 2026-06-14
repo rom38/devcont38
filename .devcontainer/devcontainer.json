@@ -22,12 +22,11 @@
         }
     },
     "containerEnv": {
-        "FNM_DIR": "/usr/local/share/fnm",
-        "SHELL": "/usr/local/bin/fish"
+        "FNM_DIR": "/usr/local/share/fnm"
     },
     "remoteEnv": {
         "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
     },
-    "postCreateCommand": "sudo chsh -s /usr/local/bin/fish vscode 2>/dev/null; mkdir -p /home/vscode/.config/fish/conf.d && printf 'fish_add_path %s\n' /home/vscode/.local/bin > /home/vscode/.config/fish/conf.d/localbin.fish && npm config set prefix /home/vscode/.local && npm i -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking",
+    "postCreateCommand": "bash .devcontainer/post-create.sh",
     "remoteUser": "vscode"
 }

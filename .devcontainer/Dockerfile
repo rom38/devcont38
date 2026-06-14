@@ -11,7 +11,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         gawk gettext gperf m4 ed fig2dev \
         lua5.3 libc-ares-dev libicu-dev openssl luajit bc rsync wget \
         ncdu tree tmux bat mc htop ninja-build cmake jq \
-        ca-certificates sysbench sqlite3 git subversion bzip2 openssh-server \
+        ca-certificates sysbench sqlite3 git subversion bzip2 openssh-server ripgrep \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

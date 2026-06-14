@@ -38,7 +38,7 @@ A devcontainer configuration only — no application code, no build system, no t
 - `postCreateCommand` globally installs `@kilocode/cli` via npm, creates fish conf.d for `~/.local/bin` PATH
 - Remote user is `vscode` (uid 1000, gid 1000)
 - Python interpreter path for VS Code: `/usr/local/bin/python`
-- Default shell is fish (`$SHELL=/usr/local/bin/fish`, `chsh -s /usr/local/bin/fish vscode`)
+- Default shell is bash with fish auto-launched for interactive sessions (preserves DevPod SSH compatibility)
 - `FNM_DIR=/usr/local/share/fnm` set via `containerEnv` (also exported during Dockerfile build)
 - `devcon-doc.md`, `docker-file.md`, `fnm-doc.md`, and `devpod-doc.md` are reference documentation — don't treat as project code or config
 - No lint, typecheck, or test commands exist
