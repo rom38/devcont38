@@ -11,8 +11,11 @@ printf 'fish_add_path %s\n' /home/vscode/.local/bin > /home/vscode/.config/fish/
 
 npm config set prefix /home/vscode/.local
 npm i -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking neovim
-sudo uv pip install --system pynvim
+# sudo uv pip install --system pynvim
+uv tool install pynvim
 
-# NvChad (neovim config)
-git clone https://github.com/NvChad/starter /home/vscode/.config/nvim 2>/dev/null || true
-# Note: run :Lazy sync and :MasonInstallAll inside nvim on first use
+# NvChad — Neovim configuration framework
+if [ ! -d /home/vscode/.config/nvim ]; then
+    git clone https://github.com/NvChad/starter /home/vscode/.config/nvim --depth 1
+    nvim --headless "+Lazy! sync" +qa || true
+fi
