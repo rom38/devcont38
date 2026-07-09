@@ -28,10 +28,20 @@ A devcontainer configuration only — no application code, no build system, no t
 - **restic** — v0.19.0 from GitHub (version hardcoded in Dockerfile, update manually)
 - **rclone** — latest release from downloads.rclone.org (`rclone-current-linux-*.deb`)
 
-## Dockerfile layers (2 total)
+## Dockerfile structure
 
-1. `RUN apt` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, etc.) + openssh-server + subversion from apt + apt cleanup
-2. `RUN binaries` — neovim + gitui + fzf + fish (all arch-conditional) + fzf fish integration + fnm + Node.js LTS + uv + Python 3.14 + bun + broot + eza + lf + restic + rclone
+`COPY scripts/` copies all scripts into `/tmp/devcon-scripts/`, then a single `RUN` chains them:
+
+1. `install-apt-packages.sh` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, iputils-ping, etc.) + openssh-server + subversion from apt + apt cleanup
+2. `detect-arch.sh` (sourced) + 12 `install-*.sh` — neovim, gitui, fzf, fish, fnm+Node.js LTS, uv+Python 3.14, eza, broot, lf, restic, rclone, bun
+
+Scripts are in `.devcontainer/scripts/`. Hardcoded versions (update in the scripts, not the Dockerfile):
+- fzf v0.73.1 in `install-fzf.sh`
+- fish 4.7.1 in `install-fish.sh`
+- restic v0.19.0 in `install-restic.sh`
+- broot v1.57.0 in `install-broot.sh`
+
+`install-subversion.sh` is a standalone script — NOT used by the Dockerfile build chain (subversion is installed from apt in `install-apt-packages.sh`). It exists for manual Subversion 1.14.5 source builds.
 
 ## Key facts
 
