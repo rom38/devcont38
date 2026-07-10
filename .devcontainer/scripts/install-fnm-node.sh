@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-set -e
-curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir /usr/local/share/fnm --skip-shell
+echo "=== [$(date +%H:%M:%S)] $(basename $0) ==="
+set -ex
+curl -fsSL --retry 3 --retry-delay 5 --retry-connrefused https://fnm.vercel.app/install | bash -s -- --install-dir /usr/local/share/fnm --skip-shell
 ln -s /usr/local/share/fnm/fnm /usr/local/bin/fnm
 export FNM_DIR=/usr/local/share/fnm
 export PATH="/usr/local/share/fnm:$PATH"

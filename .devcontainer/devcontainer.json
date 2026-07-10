@@ -12,7 +12,8 @@
             "upgradePackages": "true"
         },
         "ghcr.io/devcontainers-extra/features/fd:1": {},
-        "ghcr.io/devcontainers-extra/features/gh-cli:1": {}
+        "ghcr.io/devcontainers-extra/features/gh-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
     },
     "customizations": {
         "vscode": {

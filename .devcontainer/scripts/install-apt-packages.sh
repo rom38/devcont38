@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-set -e
+echo "=== [$(date +%H:%M:%S)] $(basename $0) ==="
+set -ex
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get purge -y imagemagick imagemagick-6-common
+apt-get purge -y imagemagick imagemagick-6-common || true
 apt-get install -y --no-install-recommends \
     locales build-essential \
     libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
