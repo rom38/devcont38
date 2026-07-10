@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-echo "=== [$(date +%H:%M:%S)] $(basename $0) ==="
-set -ex
+set -e
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y --no-install-recommends \
