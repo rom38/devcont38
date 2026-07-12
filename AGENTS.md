@@ -14,6 +14,7 @@ A devcontainer configuration only — no application code, no build system, no t
 
 - `common-utils` (zsh, vscode user)
 - `gh` (latest), `fd`
+- `docker-outside-of-docker` (Docker CLI + host socket, moby disabled)
 
 ## Tools installed by Dockerfile (prebuilt binaries)
 
@@ -30,18 +31,20 @@ A devcontainer configuration only — no application code, no build system, no t
 
 ## Dockerfile structure
 
-`COPY scripts/` copies all scripts into `/tmp/devcon-scripts/`, then a single `RUN` chains them:
+`COPY scripts/` copies all scripts into `/tmp/devcon-scripts/`, then 4 `RUN` layers:
 
-1. `install-apt-packages.sh` — imagemagick purge + ~40 dev packages (build-essential, libs, ncdu, tree, tmux, bat, mc, htop, lf, jq, iputils-ping, etc.) + openssh-server + subversion from apt + apt cleanup
-2. `detect-arch.sh` (sourced) + 12 `install-*.sh` — neovim, gitui, fzf, fish, fnm+Node.js LTS, uv+Python 3.14, eza, broot, lf, restic, rclone, bun
+1. `install-apt-essentials.sh` — 14 base packages (curl, git, build-essential, tar, openssh-server, ripgrep…)
+2. `install-apt-devtools.sh` — ~30 dev libraries and tools (lib*-dev, ncdu, tmux, bat, cmake, lua…)
+3. `install-binaries.sh` — arch detection + 12 tools (neovim, gitui, fzf, fish, fnm+Node.js LTS, uv+Python 3.14, eza, broot, lf, restic, rclone, bun)
+4. `rm -rf /tmp/devcon-scripts` — cleanup
 
 Scripts are in `.devcontainer/scripts/`. Hardcoded versions (update in the scripts, not the Dockerfile):
-- fzf v0.73.1 in `install-fzf.sh`
-- fish 4.7.1 in `install-fish.sh`
-- restic v0.19.0 in `install-restic.sh`
-- broot v1.57.0 in `install-broot.sh`
+- fzf v0.73.1 in `install-binaries.sh`
+- fish 4.7.1 in `install-binaries.sh`
+- restic v0.19.0 in `install-binaries.sh`
+- broot v1.57.0 in `install-binaries.sh`
 
-`install-subversion.sh` is a standalone script — NOT used by the Dockerfile build chain (subversion is installed from apt in `install-apt-packages.sh`). It exists for manual Subversion 1.14.5 source builds.
+`install-subversion.sh` is a standalone script — NOT used by the Dockerfile build chain (subversion is installed from apt in `install-apt-devtools.sh`). It exists for manual Subversion 1.14.5 source builds.
 
 ## Key facts
 
