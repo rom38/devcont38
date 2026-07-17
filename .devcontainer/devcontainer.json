@@ -29,7 +29,8 @@
         "FNM_DIR": "/usr/local/share/fnm"
     },
     "remoteEnv": {
-        "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+        "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+        "PATH": "${containerEnv:PATH}:${containerEnv:HOME}/.bun/bin"
     },
     "postCreateCommand": "bash .devcontainer/post-create.sh",
     "remoteUser": "vscode"
