@@ -58,4 +58,3 @@ dpkg -i /tmp/rclone.deb
 rm /tmp/rclone.deb
 
 curl -fsSL https://bun.sh/install | env BUN_INSTALL=/usr/local bash
-export PATH="/home/vscode/.bun/bin:$PATH"

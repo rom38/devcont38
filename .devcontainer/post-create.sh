@@ -13,6 +13,8 @@ npm config set prefix /home/vscode/.local
 # npm i -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking neovim
 npm i -g neovim
 bun add -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking neovim
+export PATH=PATH="$HOME/.bun/bin:$PATH"
+
 # sudo uv pip install --system pynvim
 uv tool install pynvim
 
