@@ -1,6 +1,6 @@
-ARG VARIANT=3.14-trixie
+ARG VARIANT=trixie
 # FROM debian:${VARIANT}
-FROM python:${VARIANT}
+FROM buildpack-deps:${VARIANT}
 
 COPY scripts/ /tmp/devcon-scripts/
 
