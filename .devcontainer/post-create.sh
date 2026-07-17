@@ -24,5 +24,5 @@ if [ ! -d /home/vscode/.config/nvim ]; then
     # nvim --headless "+Lazy! sync" +qa || true
     # nvim --headless "+Lazy! clean nvim-treesitter" +qa  || true
     # nvim --headless "+Lazy! install nvim-treesitter" +qa || true
-    nvim --headless "+Lazy! sync" "+MasonInstallAll" "+TSUpdateSync" +qa || true
+    nvim --headless "+Lazy! sync" "+MasonInstallAll" +qa || true
 fi
