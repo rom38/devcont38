@@ -36,9 +36,9 @@ ln -sf "$NODE_BIN/npx" /usr/local/bin/npx
 chmod -R a+rX /usr/local/share/fnm
 
 curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
-UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python install 3.14
-ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python3
-ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python
+# UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python install 3.14
+# ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python3
+# ln -sf "$(UV_PYTHON_INSTALL_DIR=/usr/local/share/uv-python uv python find 3.14)" /usr/local/bin/python
 
 curl -fsSL "https://github.com/eza-community/eza/releases/latest/download/eza_${EZA_ARCH}.tar.gz" \
     | tar xzf - -C /usr/local/bin
