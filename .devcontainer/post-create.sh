@@ -11,7 +11,8 @@ printf 'fish_add_path %s\n' /home/vscode/.local/bin > /home/vscode/.config/fish/
 
 npm config set prefix /home/vscode/.local
 # npm i -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking neovim
-bun i -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking neovim
+npm i -g neovim
+bun add -g @kilocode/cli firecrawl-mcp @modelcontextprotocol/server-sequential-thinking neovim
 # sudo uv pip install --system pynvim
 uv tool install pynvim
 
