@@ -21,5 +21,7 @@ uv tool install pynvim
 # NvChad — Neovim configuration framework
 if [ ! -d /home/vscode/.config/nvim ]; then
     git clone https://github.com/NvChad/starter /home/vscode/.config/nvim --depth 1
-    nvim --headless "+Lazy! sync" +qa || true
+    nvim --headless "+Lazy! sync" +qa
+    nvim --headless "+Lazy! clean nvim-treesitter" +qa
+    nvim --headless "+Lazy! install nvim-treesitter" +qa || true
 fi
